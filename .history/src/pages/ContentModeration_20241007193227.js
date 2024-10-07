@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Modal } from 'antd';
+import { Table, Button, Modal, Checkbox } from 'antd';
 
 const ContentModeration = () => {
   const [selectedContent, setSelectedContent] = useState(null);
@@ -44,9 +44,7 @@ const ContentModeration = () => {
       title: 'Actions',
       key: 'actions',
       render: (_, record) => (
-        <Button onClick={() => showModal(record)} className="bg-blue-500 hover:bg-blue-600 text-white dark:bg-blue-700 dark:hover:bg-blue-800">
-          Review
-        </Button>
+        <Button onClick={() => showModal(record)}>Review</Button>
       ),
     },
   ];
@@ -83,53 +81,44 @@ const ContentModeration = () => {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-      <h1 className="text-3xl font-bold mb-6">Content Moderation</h1>
-      <div className="mb-4">
-        <Button onClick={handleBatchApprove} className="mr-2 bg-blue-500 hover:bg-blue-600 text-white dark:bg-blue-700 dark:hover:bg-blue-800">
+    <div>
+      <h1>Content Moderation</h1>
+      <div style={{ marginBottom: 16 }}>
+        <Button onClick={handleBatchApprove} style={{ marginRight: 8 }}>
           Batch Approve
         </Button>
-        <Button onClick={handleBatchReject} className="bg-red-500 hover:bg-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800">
-          Batch Reject
-        </Button>
+        <Button onClick={handleBatchReject}>Batch Reject</Button>
       </div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
-        <Table
-          rowSelection={{
-            type: 'checkbox',
-            ...rowSelection,
-          }}
-          columns={columns}
-          dataSource={data}
-          className="[&_.ant-table]:!bg-transparent [&_.ant-table-thead>tr>th]:!bg-gray-100 dark:[&_.ant-table-thead>tr>th]:!bg-gray-700 [&_.ant-table-tbody>tr>td]:!bg-transparent [&_.ant-table-tbody>tr:hover>td]:!bg-gray-50 dark:[&_.ant-table-tbody>tr:hover>td]:!bg-gray-700 [&_.ant-table-cell]:!text-gray-900 dark:[&_.ant-table-cell]:!text-gray-100 [&_.ant-table-row-expand-icon]:!bg-gray-200 dark:[&_.ant-table-row-expand-icon]:!bg-gray-600"
-          pagination={{
-            className: "!bg-transparent dark:!bg-transparent [&_.ant-pagination-item-active]:!bg-blue-500 dark:[&_.ant-pagination-item-active]:!bg-blue-700 [&_.ant-pagination-item-active>a]:!text-white",
-          }}
-        />
-      </div>
+      <Table
+        rowSelection={{
+          type: 'checkbox',
+          ...rowSelection,
+        }}
+        columns={columns}
+        dataSource={data}
+      />
       <Modal
         title="Content Review"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={() => setIsModalVisible(false)}
         footer={[
-          <Button key="reject" onClick={handleReject} className="bg-red-500 hover:bg-red-600 text-white dark:bg-red-700 dark:hover:bg-red-800">
+          <Button key="reject" onClick={handleReject}>
             Reject
           </Button>,
-          <Button key="approve" onClick={handleOk} className="bg-green-500 hover:bg-green-600 text-white dark:bg-green-700 dark:hover:bg-green-800">
+          <Button key="approve" type="primary" onClick={handleOk}>
             Approve
           </Button>,
         ]}
-        className="[&_.ant-modal-content]:bg-white [&_.ant-modal-content]:dark:bg-gray-800 [&_.ant-modal-header]:bg-white [&_.ant-modal-header]:dark:bg-gray-800 [&_.ant-modal-title]:text-gray-900 [&_.ant-modal-title]:dark:text-gray-100 [&_.ant-modal-close-x]:text-gray-500 [&_.ant-modal-close-x]:dark:text-gray-400"
       >
         {selectedContent && (
-          <div className="text-gray-900 dark:text-gray-100">
+          <div>
             <p><strong>User:</strong> {selectedContent.user}</p>
             <p><strong>Type:</strong> {selectedContent.contentType}</p>
             <p><strong>Reason Flagged:</strong> {selectedContent.reasonFlagged}</p>
             <p><strong>Time Posted:</strong> {selectedContent.timePosted}</p>
             <p><strong>Content:</strong></p>
-            <p className="bg-gray-100 dark:bg-gray-700 p-2 rounded">{selectedContent.content}</p>
+            <p>{selectedContent.content}</p>
           </div>
         )}
       </Modal>

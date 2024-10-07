@@ -12,7 +12,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 h-screen bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-300">
+    <div className="w-64 h-screen bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-300">
       <nav className="mt-10">
         <ul className="space-y-4">
           <li>

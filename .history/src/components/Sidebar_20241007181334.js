@@ -37,7 +37,7 @@ const Sidebar = () => {
           </li>
           <li>
             <Link to="/dashboard/contentModeration" className={getLinkClasses('/dashboard/contentModeration')}>
-              <FaUsers className="mr-2" /> Content Moderation
+              <FaUsers className="mr-2" /> Content Moderation--------------------------------------------------------------------------- 
             </Link>
           </li>
           <li>

@@ -93,20 +93,15 @@ const ContentModeration = () => {
           Batch Reject
         </Button>
       </div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
-        <Table
-          rowSelection={{
-            type: 'checkbox',
-            ...rowSelection,
-          }}
-          columns={columns}
-          dataSource={data}
-          className="[&_.ant-table]:!bg-transparent [&_.ant-table-thead>tr>th]:!bg-gray-100 dark:[&_.ant-table-thead>tr>th]:!bg-gray-700 [&_.ant-table-tbody>tr>td]:!bg-transparent [&_.ant-table-tbody>tr:hover>td]:!bg-gray-50 dark:[&_.ant-table-tbody>tr:hover>td]:!bg-gray-700 [&_.ant-table-cell]:!text-gray-900 dark:[&_.ant-table-cell]:!text-gray-100 [&_.ant-table-row-expand-icon]:!bg-gray-200 dark:[&_.ant-table-row-expand-icon]:!bg-gray-600"
-          pagination={{
-            className: "!bg-transparent dark:!bg-transparent [&_.ant-pagination-item-active]:!bg-blue-500 dark:[&_.ant-pagination-item-active]:!bg-blue-700 [&_.ant-pagination-item-active>a]:!text-white",
-          }}
-        />
-      </div>
+      <Table
+        rowSelection={{
+          type: 'checkbox',
+          ...rowSelection,
+        }}
+        columns={columns}
+        dataSource={data}
+        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      />
       <Modal
         title="Content Review"
         visible={isModalVisible}
@@ -120,10 +115,10 @@ const ContentModeration = () => {
             Approve
           </Button>,
         ]}
-        className="[&_.ant-modal-content]:bg-white [&_.ant-modal-content]:dark:bg-gray-800 [&_.ant-modal-header]:bg-white [&_.ant-modal-header]:dark:bg-gray-800 [&_.ant-modal-title]:text-gray-900 [&_.ant-modal-title]:dark:text-gray-100 [&_.ant-modal-close-x]:text-gray-500 [&_.ant-modal-close-x]:dark:text-gray-400"
+        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
       >
         {selectedContent && (
-          <div className="text-gray-900 dark:text-gray-100">
+          <div>
             <p><strong>User:</strong> {selectedContent.user}</p>
             <p><strong>Type:</strong> {selectedContent.contentType}</p>
             <p><strong>Reason Flagged:</strong> {selectedContent.reasonFlagged}</p>

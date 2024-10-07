@@ -96,9 +96,9 @@ const Campaigns = () => {
             </div>
           </div>
           <div className="flex items-center">
-            <FiFilter className="text-indigo-500 dark:text-indigo-400 mr-2" />
+            <FiFilter className="text-indigo-500 dark:text-indigo-600 mr-2" />
             <select
-              className="border border-indigo-200 dark:border-indigo-700 bg-white dark:bg-gray-800 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 text-gray-800 dark:text-gray-200"
+              className="border border-indigo-200 dark:border-indigo-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
             >
@@ -112,48 +112,48 @@ const Campaigns = () => {
       </div>
 
       {/* Campaign List */}
-      <div className="bg-white dark:bg-gray-800 p-6 shadow-lg rounded-xl mb-8">
-        <h2 className="text-2xl font-semibold text-indigo-700 dark:text-indigo-400 mb-6">Campaign List</h2>
+      <div className="bg-white p-6 shadow-lg rounded-xl mb-8">
+        <h2 className="text-2xl font-semibold text-indigo-700 mb-6">Campaign List</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="bg-indigo-50 dark:bg-indigo-900">
-                <th className="py-3 px-4 font-semibold text-indigo-600 dark:text-indigo-300">Name</th>
-                <th className="py-3 px-4 font-semibold text-indigo-600 dark:text-indigo-300">Date</th>
-                <th className="py-3 px-4 font-semibold text-indigo-600 dark:text-indigo-300">Status</th>
-                <th className="py-3 px-4 font-semibold text-indigo-600 dark:text-indigo-300">Open Rate</th>
-                <th className="py-3 px-4 font-semibold text-indigo-600 dark:text-indigo-300">Click Rate</th>
-                <th className="py-3 px-4 font-semibold text-indigo-600 dark:text-indigo-300">Actions</th>
+              <tr className="bg-indigo-50">
+                <th className="py-3 px-4 font-semibold text-indigo-600">Name</th>
+                <th className="py-3 px-4 font-semibold text-indigo-600">Date</th>
+                <th className="py-3 px-4 font-semibold text-indigo-600">Status</th>
+                <th className="py-3 px-4 font-semibold text-indigo-600">Open Rate</th>
+                <th className="py-3 px-4 font-semibold text-indigo-600">Click Rate</th>
+                <th className="py-3 px-4 font-semibold text-indigo-600">Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredCampaigns.map((campaign) => (
                 <tr
                   key={campaign.id}
-                  className="border-b border-indigo-100 dark:border-indigo-800 hover:bg-indigo-50 dark:hover:bg-indigo-900 transition-colors duration-200"
+                  className="border-b border-indigo-100 hover:bg-indigo-50 transition-colors duration-200"
                   onClick={() => handleCampaignClick(campaign)}
                 >
-                  <td className="py-4 px-4 font-medium text-gray-800 dark:text-gray-200">{campaign.name}</td>
-                  <td className="py-4 px-4 text-gray-600 dark:text-gray-400">{campaign.date}</td>
+                  <td className="py-4 px-4 font-medium text-gray-800">{campaign.name}</td>
+                  <td className="py-4 px-4 text-gray-600">{campaign.date}</td>
                   <td className="py-4 px-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                      campaign.status === 'Completed' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                      campaign.status === 'In Progress' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
-                      'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                      campaign.status === 'Completed' ? 'bg-green-100 text-green-800' :
+                      campaign.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
+                      'bg-yellow-100 text-yellow-800'
                     }`}>
                       {campaign.status}
                     </span>
                   </td>
-                  <td className="py-4 px-4 text-gray-600 dark:text-gray-400">{campaign.openRate}</td>
-                  <td className="py-4 px-4 text-gray-600 dark:text-gray-400">{campaign.clickRate}</td>
+                  <td className="py-4 px-4 text-gray-600">{campaign.openRate}</td>
+                  <td className="py-4 px-4 text-gray-600">{campaign.clickRate}</td>
                   <td className="py-4 px-4">
-                    <button className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mr-3" title="View">
+                    <button className="text-blue-500 hover:text-blue-700 mr-3" title="View">
                       <FiEye size={18} />
                     </button>
-                    <button className="text-green-500 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 mr-3" title="Edit">
+                    <button className="text-green-500 hover:text-green-700 mr-3" title="Edit">
                       <FiEdit2 size={18} />
                     </button>
-                    <button className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300" title="Delete">
+                    <button className="text-red-500 hover:text-red-700" title="Delete">
                       <FiTrash2 size={18} />
                     </button>
                   </td>
@@ -166,26 +166,26 @@ const Campaigns = () => {
 
       {/* Campaign Details */}
       {selectedCampaign && (
-        <div className="bg-white dark:bg-gray-800 p-6 shadow-lg rounded-xl">
-          <h2 className="text-2xl font-semibold text-indigo-700 dark:text-indigo-400 mb-6 flex items-center">
-            <FiBarChart2 className="mr-2 text-indigo-500 dark:text-indigo-400" /> {selectedCampaign.name} - Details
+        <div className="bg-white p-6 shadow-lg rounded-xl">
+          <h2 className="text-2xl font-semibold text-indigo-700 mb-6 flex items-center">
+            <FiBarChart2 className="mr-2 text-indigo-500" /> {selectedCampaign.name} - Details
           </h2>
           <div className="grid grid-cols-2 gap-6">
-            <div className="bg-indigo-50 dark:bg-indigo-900 p-4 rounded-lg">
-              <p className="text-indigo-600 dark:text-indigo-300 mb-2">Date</p>
-              <p className="text-xl font-semibold text-indigo-800 dark:text-indigo-200">{selectedCampaign.date}</p>
+            <div className="bg-indigo-50 p-4 rounded-lg">
+              <p className="text-indigo-600 mb-2">Date</p>
+              <p className="text-xl font-semibold text-indigo-800">{selectedCampaign.date}</p>
             </div>
-            <div className="bg-indigo-50 dark:bg-indigo-900 p-4 rounded-lg">
-              <p className="text-indigo-600 dark:text-indigo-300 mb-2">Status</p>
-              <p className="text-xl font-semibold text-indigo-800 dark:text-indigo-200">{selectedCampaign.status}</p>
+            <div className="bg-indigo-50 p-4 rounded-lg">
+              <p className="text-indigo-600 mb-2">Status</p>
+              <p className="text-xl font-semibold text-indigo-800">{selectedCampaign.status}</p>
             </div>
-            <div className="bg-indigo-50 dark:bg-indigo-900 p-4 rounded-lg">
-              <p className="text-indigo-600 dark:text-indigo-300 mb-2">Open Rate</p>
-              <p className="text-xl font-semibold text-indigo-800 dark:text-indigo-200">{selectedCampaign.openRate}</p>
+            <div className="bg-indigo-50 p-4 rounded-lg">
+              <p className="text-indigo-600 mb-2">Open Rate</p>
+              <p className="text-xl font-semibold text-indigo-800">{selectedCampaign.openRate}</p>
             </div>
-            <div className="bg-indigo-50 dark:bg-indigo-900 p-4 rounded-lg">
-              <p className="text-indigo-600 dark:text-indigo-300 mb-2">Click Rate</p>
-              <p className="text-xl font-semibold text-indigo-800 dark:text-indigo-200">{selectedCampaign.clickRate}</p>
+            <div className="bg-indigo-50 p-4 rounded-lg">
+              <p className="text-indigo-600 mb-2">Click Rate</p>
+              <p className="text-xl font-semibold text-indigo-800">{selectedCampaign.clickRate}</p>
             </div>
           </div>
         </div>

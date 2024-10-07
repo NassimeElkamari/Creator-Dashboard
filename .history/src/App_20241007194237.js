@@ -15,7 +15,7 @@ import UserManagement from './pages/UserManagement';
 import Notifications from './pages/Notifications';
 
 // Add this import at the top of the file
-import 'antd/dist/reset.css';
+import 'antd/dist/antd.css';
 
 function App() {
   return (

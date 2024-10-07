@@ -2,7 +2,6 @@ import React from 'react';
 import { Line, Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
-import { FaLink, FaMousePointer } from 'react-icons/fa';
 
 ChartJS.register(...registerables);
 
@@ -237,39 +236,34 @@ const EmailPerformance = () => {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Engagement Breakdown</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
-            <h3 className="text-xl font-semibold mb-4">Device Type Breakdown</h3>
-            <div className="h-64">
-              <Pie data={pieChartData} options={{
-                ...chartOptions,
-                plugins: {
-                  ...chartOptions.plugins,
-                  legend: {
-                    ...chartOptions.plugins.legend,
-                    position: 'bottom'
-                  }
+        <h2 className="text-2xl font-semibold mb-4">Device Type Breakdown</h2>
+        <div className="w-full md:w-1/3 mx-auto">
+          <div className="h-64">
+            <Pie data={pieChartData} options={{
+              ...chartOptions,
+              plugins: {
+                ...chartOptions.plugins,
+                legend: {
+                  ...chartOptions.plugins.legend,
+                  position: 'bottom'
                 }
-              }} />
-            </div>
+              }
+            }} />
           </div>
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Engagement Breakdown</h2>
           <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
             <h3 className="text-xl font-semibold mb-4">Top Links Clicked</h3>
-            <ul className="space-y-2">
+            <ul className="list-unstyled">
               {topLinksData.map((link, index) => (
-                <li key={index} className="flex items-center p-2 bg-gray-100 dark:bg-gray-600 rounded">
-                  <FaLink className="mr-2 text-blue-500" />
-                  <span className="flex-grow">{link.url}</span>
-                  <span className="flex items-center">
-                    <FaMousePointer className="mr-1 text-green-500" />
-                    {link.clicks}
-                  </span>
-                </li>
+                <li key={index}>{link.url}: {link.clicks} clicks</li>
               ))}
             </ul>
           </div>
-        </div>
+          
       </div>
 
     </div>

@@ -1,0 +1,11 @@
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.heatmap-cell {
+  padding: 20px;
+  text-align: center;
+  color: white;
+}

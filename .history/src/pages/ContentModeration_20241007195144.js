@@ -120,10 +120,10 @@ const ContentModeration = () => {
             Approve
           </Button>,
         ]}
-        className="[&_.ant-modal-content]:bg-white [&_.ant-modal-content]:dark:bg-gray-800 [&_.ant-modal-header]:bg-white [&_.ant-modal-header]:dark:bg-gray-800 [&_.ant-modal-title]:text-gray-900 [&_.ant-modal-title]:dark:text-gray-100 [&_.ant-modal-close-x]:text-gray-500 [&_.ant-modal-close-x]:dark:text-gray-400"
+        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
       >
         {selectedContent && (
-          <div className="text-gray-900 dark:text-gray-100">
+          <div>
             <p><strong>User:</strong> {selectedContent.user}</p>
             <p><strong>Type:</strong> {selectedContent.contentType}</p>
             <p><strong>Reason Flagged:</strong> {selectedContent.reasonFlagged}</p>

@@ -2,11 +2,8 @@ import React from 'react';
 import { Line, Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
-import { FaLink, FaMousePointer } from 'react-icons/fa';
 
 ChartJS.register(...registerables);
-
-const geoUrl ="https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson";
 
 const EmailPerformance = () => {
   // Static data for campaign summary
@@ -51,6 +48,15 @@ const EmailPerformance = () => {
     { url: '/about-us', clicks: 300 },
   ];
 
+  // Static data for email heatmap
+  const heatmapData = [
+    { x: 0, y: 0, value: 10 },
+    { x: 1, y: 0, value: 20 },
+    { x: 2, y: 0, value: 30 },
+    { x: 0, y: 1, value: 40 },
+    { x: 1, y: 1, value: 50 },
+    { x: 2, y: 1, value: 60 },
+  ];
 
   const lineChartData = {
     labels: timeSeriesData.map(d => d.date),
@@ -183,55 +189,40 @@ const EmailPerformance = () => {
 
       <div className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Geographic Distribution</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
-            <h3 className="text-xl font-semibold mb-4">Subscriber Map</h3>
-            <ComposableMap
-              projection="geoMercator"
-              projectionConfig={{
-                scale: 100,
-              }}
-            >
-              <Geographies geography={geoUrl}>
-                {({ geographies }) =>
-                  geographies.map((geo) => (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill="#EAEAEC"
-                      stroke="#D6D6DA"
-                    />
-                  ))
-                }
-              </Geographies>
-              {geographicData.map(({ country, coordinates, subscribers }) => (
-                <Marker key={country} coordinates={coordinates}>
-                  <circle r={Math.sqrt(subscribers) / 50} fill="#F00" stroke="#fff" strokeWidth={2} />
-                  <text
-                    textAnchor="middle"
-                    y={Math.sqrt(subscribers) / 50 + 10}
-                    style={{ fontSize: '8px', fill: '#333' }}
-                  >
-                    {subscribers}
-                  </text>
-                </Marker>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-300 dark:border-gray-600">
+            <thead>
+              <tr className="bg-gray-100 dark:bg-gray-700">
+                <th className="p-2 border border-gray-300 dark:border-gray-600">Country</th>
+                <th className="p-2 border border-gray-300 dark:border-gray-600">Subscribers</th>
+              </tr>
+            </thead>
+            <tbody>
+              {geographicData.map((item, index) => (
+                <tr key={index} className={index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-900'}>
+                  <td className="p-2 border border-gray-300 dark:border-gray-600">{item.country}</td>
+                  <td className="p-2 border border-gray-300 dark:border-gray-600">{item.subscribers}</td>
+                </tr>
               ))}
-            </ComposableMap>
-          </div>
-          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
-            <h3 className="text-xl font-semibold mb-4">Subscriber Distribution</h3>
-            <div className="h-64">
-              <Pie data={geoChartData} options={{
-                ...chartOptions,
-                plugins: {
-                  ...chartOptions.plugins,
-                  legend: {
-                    ...chartOptions.plugins.legend,
-                    position: 'bottom'
-                  }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Device Type Breakdown</h2>
+        <div className="w-full md:w-1/3 mx-auto">
+          <div className="h-64">
+            <Pie data={pieChartData} options={{
+              ...chartOptions,
+              plugins: {
+                ...chartOptions.plugins,
+                legend: {
+                  ...chartOptions.plugins.legend,
+                  position: 'bottom'
                 }
-              }} />
-            </div>
+              }
+            }} />
           </div>
         </div>
       </div>
@@ -240,34 +231,28 @@ const EmailPerformance = () => {
         <h2 className="text-2xl font-semibold mb-4">Engagement Breakdown</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
-            <h3 className="text-xl font-semibold mb-4">Device Type Breakdown</h3>
-            <div className="h-64">
-              <Pie data={pieChartData} options={{
-                ...chartOptions,
-                plugins: {
-                  ...chartOptions.plugins,
-                  legend: {
-                    ...chartOptions.plugins.legend,
-                    position: 'bottom'
-                  }
-                }
-              }} />
-            </div>
-          </div>
-          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
             <h3 className="text-xl font-semibold mb-4">Top Links Clicked</h3>
-            <ul className="space-y-2">
+            <ul className="list-unstyled">
               {topLinksData.map((link, index) => (
-                <li key={index} className="flex items-center p-2 bg-gray-100 dark:bg-gray-600 rounded">
-                  <FaLink className="mr-2 text-blue-500" />
-                  <span className="flex-grow">{link.url}</span>
-                  <span className="flex items-center">
-                    <FaMousePointer className="mr-1 text-green-500" />
-                    {link.clicks}
-                  </span>
-                </li>
+                <li key={index}>{link.url}: {link.clicks} clicks</li>
               ))}
             </ul>
+          </div>
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+            <h3 className="text-xl font-semibold mb-4">Email Heatmap</h3>
+            <div className="heatmap-grid">
+              {heatmapData.map((cell, index) => (
+                <div
+                  key={index}
+                  className="heatmap-cell"
+                  style={{
+                    backgroundColor: `rgba(255, 0, 0, ${cell.value / 100})`,
+                  }}
+                >
+                  {cell.value}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

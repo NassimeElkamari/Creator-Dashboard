@@ -13,7 +13,7 @@ const DashboardLayout = ({ children }) => {
       {/* Main layout with Sidebar and Content */}
       <div className="flex flex-1">
         <Sidebar />
-        <main className="flex-1 p-6 bg-gray-100 dark:bg-gray-900">{children}</main>
+        <main className="flex-1 p-6 bg-gray-100 dark">{children}</main>
       </div>
     </div>
   );

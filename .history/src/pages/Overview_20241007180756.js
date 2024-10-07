@@ -40,7 +40,7 @@ const Overview = () => {
   };
 
   return (
-    <div className="p-8 min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="p-8 min-h-screen  dark:bg-gray-900">
       <h1 className="text-4xl font-bold mb-8 text-gray-800 dark:text-gray-200 border-b pb-4 border-gray-300 dark:border-gray-700">Dashboard Overview</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

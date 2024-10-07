@@ -14,9 +14,6 @@ import Analytics from './pages/Analytics';
 import UserManagement from './pages/UserManagement';
 import Notifications from './pages/Notifications';
 
-// Add this import at the top of the file
-import 'antd/dist/reset.css';
-
 function App() {
   return (
     <ThemeProvider>

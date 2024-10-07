@@ -45,7 +45,7 @@ const Subscribers = () => {
   };
 
   return (
-    <div className="p-8 min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="p-8 min-h-screen bg-white dark:bg-gray-900">
       <h1 className="text-4xl font-bold mb-8 text-gray-800 dark:text-gray-100">Subscribers</h1>
 
       {/* Stats Section */}
@@ -160,13 +160,13 @@ const Subscribers = () => {
 
       {/* Subscriber Details */}
       {selectedSubscriber && (
-        <div className="bg-white dark:bg-gray-800 p-6 shadow-lg rounded-xl">
-          <h2 className="text-2xl font-semibold text-indigo-700 dark:text-indigo-400 mb-6">
+        <div className="bg-white p-6 shadow-lg rounded-xl">
+          <h2 className="text-2xl font-semibold text-indigo-700 mb-6">
             Subscriber: {selectedSubscriber.name}
           </h2>
-          <p className="text-gray-800 dark:text-gray-200"><strong>Email:</strong> {selectedSubscriber.email}</p>
-          <p className="text-gray-800 dark:text-gray-200"><strong>Subscription Date:</strong> {selectedSubscriber.subscriptionDate}</p>
-          <p className="text-gray-800 dark:text-gray-200"><strong>Status:</strong> {selectedSubscriber.status}</p>
+          <p><strong>Email:</strong> {selectedSubscriber.email}</p>
+          <p><strong>Subscription Date:</strong> {selectedSubscriber.subscriptionDate}</p>
+          <p><strong>Status:</strong> {selectedSubscriber.status}</p>
         </div>
       )}
     </div>
